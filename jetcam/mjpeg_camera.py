@@ -8,11 +8,11 @@ import traitlets
 
 class MJPEGCamera(Camera):
     
-    capture_device = traitlets.Integer(default_value=0)
+    capture_location = traitlets.String(default_value="127.0.0.1:8080/stream")
     capture_fps = traitlets.Integer(default_value=30)
     capture_width = traitlets.Integer(default_value=640)
     capture_height = traitlets.Integer(default_value=480)
-    capture_location = traitlets.String(default_value="127.0.0.1:8080/stream")
+    
     
     def __init__(self, *args, **kwargs):
         super(MJPEGCamera, self).__init__(*args, **kwargs)
@@ -31,7 +31,7 @@ class MJPEGCamera(Camera):
                 
     def _gst_str(self):
         return 'souphttpsrc location=%s do-timestamp=true is_live=true ! multipartdemux ! jpegdec ! videorate ! videoscale ! video/x-raw, width=(int)%d, height=(int)%d, framerate=(fraction)%d/1 ! videoconvert ! video/x-raw, format=BGR ! appsink' % (
-                "http://" + self.capture_location, self.capture_width, self.capture_height, self.capture_fps, self.width, self.height)
+                "http://" + self.capture_location, self.capture_width, self.capture_height, self.capture_fps)
 
     
     def _read(self):
