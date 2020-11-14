@@ -17,7 +17,7 @@ class MJPEGCamera(Camera):
     def __init__(self, *args, **kwargs):
         super(MJPEGCamera, self).__init__(*args, **kwargs)
         try:
-            self.cap = cv2.VideoCapture(self._mjpeg_pipeline(self.camera_location), cv2.CAP_GSTREAMER)
+            self.cap = cv2.VideoCapture(self._gst_str(self.capture_location), cv2.CAP_GSTREAMER)
 
             re, image = self.cap.read()
 
