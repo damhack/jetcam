@@ -14,7 +14,7 @@ If you find an issue, please [let us know](../..//issues)!
 ## Setup
 
 ```bash
-git clone https://github.com/NVIDIA-AI-IOT/jetcam
+git clone https://github.com/damhack/jetcam
 cd jetcam
 sudo python3 setup.py install
 ```
@@ -43,6 +43,16 @@ Call ``USBCamera`` to use a compatbile USB camera.  The same parameters as ``CSI
 from jetcam.usb_camera import USBCamera
 
 camera = USBCamera(capture_device=1)
+```
+
+### Create Remote MJPEG IP camera
+
+Call ``MJPEGCamera`` to use a compatbile remote IP camera.  The same parameters as ``CSICamera`` apply, along with a parameter ``capture_location`` that indicates the remote streaming address.
+
+```python
+from jetcam.mjpeg_camera import MJPEGCamera
+
+camera = MJPEGCamera(capture_location="192.168.0.100:8080/stream",capture_width=1080, capture_height=720, capture_fps=30)
 ```
 
 ### Read
