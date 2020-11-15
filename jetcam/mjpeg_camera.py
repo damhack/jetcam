@@ -8,7 +8,7 @@ import traitlets
 
 class MJPEGCamera(Camera):
     
-    capture_location = traitlets.String(default_value="127.0.0.1:8080/stream")
+    capture_location = traitlets.Unicode(default_value="127.0.0.1:8080/stream")
     capture_fps = traitlets.Integer(default_value=30)
     capture_width = traitlets.Integer(default_value=640)
     capture_height = traitlets.Integer(default_value=480)
